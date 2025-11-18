@@ -30,9 +30,9 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <div className="my-10">
-      <h1 className="text-center text-3xl font-bold">How it works</h1>
-      <div className="grid grid-cols-4 my-10 gap-4">
+    <div className="my-20 mx-24">
+      <h1 className="text-3xl font-bold">How it works</h1>
+      <div className="grid grid-cols-4 my-10 gap-6">
         {steps.map((step) => (
           <div className="bg-white p-7 rounded-xl">
             <img src={step.img} alt="" />

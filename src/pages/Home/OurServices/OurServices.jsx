@@ -42,7 +42,7 @@ const serviceSteps = [
 
 const OurServices = () => {
   return (
-    <div className="bg-secondary py-10 rounded-2xl">
+    <div className="bg-secondary py-20 rounded-2xl my-20">
       <div className="text-center">
         <h1 className="text-3xl text-white font-bold mb-5">Our Services</h1>
         <h4 className="text-[#DADADA] max-w-1/2 mx-auto">
@@ -51,9 +51,13 @@ const OurServices = () => {
           time, every time.
         </h4>
       </div>
-      <div className="grid grid-cols-3 gap-4 px-15 mt-10 text-center">
+      <div className="grid grid-cols-3 gap-8 px-20 mt-10 text-center">
         {serviceSteps.map((step) => (
-          <div className="bg-white p-7 rounded-2xl flex items-center flex-col">
+          <div
+            className={`p-7 rounded-2xl flex items-center flex-col ${
+              step.id === 2 ? "bg-primary" : "bg-white"
+            }`}
+          >
             <img src={step.img} alt="" />
 
             <h3 className="font-bold my-2.5 text-xl max-w-8/12">
