@@ -27,11 +27,16 @@ const WhyChooseUs = () => {
   return (
     <div className="flex flex-col gap-5 my-20 mx-24">
       {features.map((step, index) => (
-        <div key={index} className="flex bg-white rounded-2xl p-10 gap-15">
-          <div>
-            <img src={step.img} alt="" />
+        <div
+          key={index}
+          className="flex flex-col md:flex-row bg-white rounded-2xl p-10 gap-15"
+        >
+          <div className="flex items-center justify-center">
+            <div>
+              <img src={step.img} alt="" />
+            </div>
           </div>
-          <div className="flex h-30 items-center">
+          <div className="flex hidden md:block h-30 items-center">
             <div class="border-l border-dashed border-gray-400 h-full"></div>
           </div>
           <div className="flex items-center">

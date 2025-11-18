@@ -51,9 +51,10 @@ const OurServices = () => {
           time, every time.
         </h4>
       </div>
-      <div className="grid grid-cols-3 gap-8 px-20 mt-10 text-center">
-        {serviceSteps.map((step) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-20 mt-10 text-center">
+        {serviceSteps.map((step, index) => (
           <div
+            key={index}
             className={`p-7 rounded-2xl flex items-center flex-col ${
               step.id === 2 ? "bg-primary" : "bg-white"
             }`}

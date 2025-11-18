@@ -32,9 +32,9 @@ const HowItWorks = () => {
   return (
     <div className="my-20 mx-24">
       <h1 className="text-3xl font-bold">How it works</h1>
-      <div className="grid grid-cols-4 my-10 gap-6">
-        {steps.map((step) => (
-          <div className="bg-white p-7 rounded-xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-10 gap-6">
+        {steps.map((step, index) => (
+          <div key={index} className="bg-white p-7 rounded-xl">
             <img src={step.img} alt="" />
             <h3 className="font-bold my-2.5">{step.title}</h3>
             <h5 className="text-description">{step.desc}</h5>
