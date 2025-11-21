@@ -7,6 +7,12 @@ import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import ResetPassword from "../pages/Auth/Login/ResetPassword";
 
+import Rider from "../pages/Rider/Rider";
+import SendParcel from "../pages/SendParcel/SendParcel";
+import PrivateRoute from "./PrivateRoute";
+import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
+import DashboardLayout from "../layouts/DashboardLayout";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +21,23 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "rider",
+        element: (
+          <PrivateRoute>
+            <Rider></Rider>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "send-parcel",
+        element: (
+          <PrivateRoute>
+            <SendParcel></SendParcel>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
       },
       {
         path: "coverage",
@@ -38,6 +61,20 @@ export const router = createBrowserRouter([
       {
         path: "resetPassword",
         Component: ResetPassword,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "my-parcels",
+        Component: MyParcels,
       },
     ],
   },

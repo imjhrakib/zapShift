@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
             </div>
           </div>
           <div className="flex hidden md:block h-30 items-center">
-            <div class="border-l border-dashed border-gray-400 h-full"></div>
+            <div className="border-l border-dashed border-gray-400 h-full"></div>
           </div>
           <div className="flex items-center">
             <div>

@@ -1,11 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
 
 const Register = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -36,6 +38,7 @@ const Register = () => {
           })
           .catch((error) => console.log(error.message));
       });
+      navigate(location?.state || "/");
     });
   };
   return (
@@ -106,7 +109,11 @@ const Register = () => {
         </fieldset>
         <p>
           Already have an account{" "}
-          <Link to={"/login"} className="text-blue-600 underline">
+          <Link
+            state={location?.state}
+            to={"/login"}
+            className="text-blue-600 underline"
+          >
             Login
           </Link>
         </p>

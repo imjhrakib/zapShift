@@ -20,8 +20,19 @@ const NavBar = () => {
         <NavLink to={"/services"}>Services</NavLink>
       </li>
       <li>
+        <NavLink to={"/send-parcel"}>Send Parcel</NavLink>
+      </li>
+
+      <li>
         <NavLink to={"/Coverage"}>Coverage</NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to={"/dashboard/my-parcels"}>My Parcels</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -49,28 +60,11 @@ const NavBar = () => {
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
-          <Logo></Logo>
-        </a>
+
+        <Logo></Logo>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -85,7 +79,9 @@ const NavBar = () => {
             Log In
           </Link>
         )}
-        <Link className="btn btn-primary text-black mx-4">Be a Rider</Link>
+        <Link to={"/rider"} className="btn btn-primary text-black mx-4">
+          Be a Rider
+        </Link>
       </div>
     </div>
   );
