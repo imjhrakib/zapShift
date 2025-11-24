@@ -1,4 +1,5 @@
 import React from "react";
+import { FaRegCreditCard, FaRegistered } from "react-icons/fa";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
 
@@ -78,6 +79,16 @@ const DashboardLayout = () => {
               >
                 <MdProductionQuantityLimits />
                 <span className="is-drawer-close:hidden">My Parcels</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"/dashboard/payment-history"}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Payment History"
+              >
+                <FaRegCreditCard />
+                <span className="is-drawer-close:hidden">Payment History</span>
               </NavLink>
             </li>
             {/* List item */}
