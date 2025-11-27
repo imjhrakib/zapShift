@@ -1,9 +1,17 @@
 import React from "react";
-import { FaRegCreditCard, FaRegistered } from "react-icons/fa";
+import {
+  FaMotorcycle,
+  FaRegCreditCard,
+  FaRegistered,
+  FaUsers,
+} from "react-icons/fa";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
+
   return (
     <div className="drawer lg:drawer-open max-w-7xl mx-auto pt-6">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -91,6 +99,34 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Payment History</span>
               </NavLink>
             </li>
+            {role.role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to={"/dashboard/approve-riders"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Approve Riders"
+                  >
+                    <FaMotorcycle />
+                    <span className="is-drawer-close:hidden">
+                      Approve Riders
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/users-management"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Management"
+                  >
+                    <FaUsers />
+                    <span className="is-drawer-close:hidden">
+                      Users Management
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
             {/* List item */}
             <li>
               <button

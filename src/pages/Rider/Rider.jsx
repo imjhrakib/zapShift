@@ -3,22 +3,31 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useLoaderData } from "react-router";
 import { useForm, useWatch } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Rider = () => {
   const { user } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    control,
-    // formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      name: "",
+      phoneNumber: "",
+      email: user?.email || "",
+      nid: "",
+      riderRegion: "",
+      riderDistrict: "",
+      dlNum: "",
+      bikeModel: "",
+      bikeRegistrationNumber: "",
+      info: "",
+    },
+  });
+
   const axiosSecure = useAxiosSecure();
   const serviceCenters = useLoaderData();
   const regionsDuplicate = serviceCenters.map((c) => c.region);
   const regions = [...new Set(regionsDuplicate)];
 
-  const riderRegion = useWatch({ control, name: "senderRegion" });
-  const receiverRegion = useWatch({ control, name: "receiverRegion" });
+  const riderRegion = useWatch({ control, name: "riderRegion" });
 
   const districtByRegion = (region) => {
     const regionDistricts = serviceCenters.filter((c) => c.region === region);
@@ -27,7 +36,17 @@ const Rider = () => {
   };
 
   const handleRiderApplication = (data) => {
-    console.log(data);
+    axiosSecure.post("/riders", data).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Application Submitted, we will reach to you within 5days.",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    });
   };
   return (
     <div>
@@ -44,7 +63,7 @@ const Rider = () => {
             <label className="label text-black text-sm">Your Name</label>
             <input
               type="text"
-              {...register("riderName")}
+              {...register("name")}
               className="input p-2 w-full mb-2"
               placeholder="Your Name"
             />
@@ -54,7 +73,7 @@ const Rider = () => {
             </label>
             <input
               type="text"
-              {...register("riderEmail")}
+              {...register("dlNum")}
               className="input p-2 w-full mb-2"
               placeholder="Driving License Number"
             />
@@ -62,7 +81,7 @@ const Rider = () => {
             <label className="label  text-black text-sm">Your Email</label>
             <input
               type="text"
-              {...register("riderEmail")}
+              {...register("email")}
               className="input p-2 w-full mb-2"
               defaultValue={user?.email}
               placeholder="Your Email"
@@ -73,7 +92,7 @@ const Rider = () => {
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Your Region</legend>
               <select
-                {...register("senderRegion")}
+                {...register("riderRegion")}
                 defaultValue="Select Your Region"
                 className="select w-full"
               >
@@ -108,7 +127,7 @@ const Rider = () => {
               <label className="label text-black text-sm">NID No</label>
               <input
                 type="text"
-                {...register("riderNid")}
+                {...register("nid")}
                 className="input p-2 w-full mb-2"
                 placeholder="Your NID"
               />
@@ -116,7 +135,7 @@ const Rider = () => {
               <label className="label text-black text-sm">Phone Number</label>
               <input
                 type="text"
-                {...register("riderPhoneNumber")}
+                {...register("phoneNumber")}
                 className="input p-2 w-full mb-2"
                 placeholder="Your Phone Number"
               />
@@ -126,7 +145,7 @@ const Rider = () => {
               </label>
               <input
                 type="text"
-                {...register("riderBikeModel")}
+                {...register("bikeModel")}
                 className="input p-2 w-full mb-2"
                 placeholder="Bike Brand Model and Year"
               />
@@ -145,7 +164,7 @@ const Rider = () => {
               </label>
               <input
                 type="text"
-                {...register("riderInfo")}
+                {...register("info")}
                 className="input p-2 w-full mb-2"
                 placeholder="Tell us about yourself"
               />
@@ -155,7 +174,7 @@ const Rider = () => {
         <input
           type="submit"
           className="btn btn-primary text-black"
-          value="Send Parcel"
+          value="Apply as a Rider"
         />
       </form>
     </div>
