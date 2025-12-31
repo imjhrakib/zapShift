@@ -24,7 +24,7 @@
 
 ## Installation
 1. Clone the repository:
-   git clone https://github.com/imjhrakib/zap-shift.git
+   git clone [https://github.com/imjhrakib/zap-shift.git](https://github.com/imjhrakib/zapShift)
 
 2. Navigate to the project folder:
    cd zap-shift
