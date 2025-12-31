@@ -41,7 +41,7 @@ const Rider = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Application Submitted, we will reach to you within 5days.",
+          title: "Application Submitted, we will reach to you within 5 days.",
           showConfirmButton: false,
           timer: 2000,
         });

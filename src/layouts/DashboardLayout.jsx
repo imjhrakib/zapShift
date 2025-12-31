@@ -2,12 +2,15 @@ import React from "react";
 import {
   FaMotorcycle,
   FaRegCreditCard,
-  FaRegistered,
+  FaTasks,
   FaUsers,
 } from "react-icons/fa";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
+
+import { RiEBikeFill } from "react-icons/ri";
+import logoImg from "../assets/logo.png";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -56,8 +59,13 @@ const DashboardLayout = () => {
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
+              <Link to={"/"}>
+                <img src={logoImg} alt="" />
+              </Link>
+            </li>
+            <li>
               <Link
-                to={"/"}
+                to={"/dashboard"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Homepage"
               >
@@ -99,7 +107,38 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Payment History</span>
               </NavLink>
             </li>
-            {role.role === "admin" && (
+
+            {/* role for rider */}
+            {role === "rider" && (
+              <>
+                <li>
+                  <NavLink
+                    to={"/dashboard/assigned-deliveries"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assigned Deliveries"
+                  >
+                    <FaTasks />
+                    <span className="is-drawer-close:hidden">
+                      Assigned Deliveries
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/completed-deliveries"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Completed Deliveries"
+                  >
+                    <FaTasks />
+                    <span className="is-drawer-close:hidden">
+                      Comleted Deliveries
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {/* role for admin  */}
+            {role === "admin" && (
               <>
                 <li>
                   <NavLink
@@ -110,6 +149,18 @@ const DashboardLayout = () => {
                     <FaMotorcycle />
                     <span className="is-drawer-close:hidden">
                       Approve Riders
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/assigned-riders"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assigned Riders"
+                  >
+                    <RiEBikeFill />
+                    <span className="is-drawer-close:hidden">
+                      Assigned Riders
                     </span>
                   </NavLink>
                 </li>

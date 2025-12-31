@@ -17,7 +17,7 @@ const ApproveRiders = () => {
   });
 
   const updateRiderStatus = (rider, status) => {
-    const updateStatus = { status: status, email: rider.Email };
+    const updateStatus = { status: status, email: rider.email };
     axiosSecure.patch(`/riders/${rider._id}`, updateStatus).then((res) => {
       if (res.data.modifiedCount) {
         refetch();
@@ -64,7 +64,8 @@ const ApproveRiders = () => {
               <th>Name</th>
               <th>Email</th>
               <th>District</th>
-              <th>Status</th>
+              <th>Application Status</th>
+              <th>Work Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -72,8 +73,8 @@ const ApproveRiders = () => {
             {riders.map((rider, index) => (
               <tr key={rider._id}>
                 <th>{index + 1}</th>
-                <td>{rider.Name}</td>
-                <td>{rider.Email}</td>
+                <td>{rider.name}</td>
+                <td>{rider.email}</td>
                 <td>{rider.riderDistrict}</td>
                 <td>
                   <p
@@ -86,6 +87,7 @@ const ApproveRiders = () => {
                     {rider.status}
                   </p>
                 </td>
+                <td>{rider.workStatus}</td>
                 <td>
                   <button className="btn">
                     <FaEye />
