@@ -21,3 +21,16 @@
   <img src="https://img.shields.io/badge/DaisyUI-4B4B4B?style=for-the-badge&logo=daisyui&logoColor=white" alt="DaisyUI" />
   <img src="https://img.shields.io/badge/SweetAlert2-FF6F61?style=for-the-badge&logo=javascript&logoColor=white" alt="SweetAlert2" />
 </p>
+
+## Installation
+1. Clone the repository:
+   git clone https://github.com/imjhrakib/zap-shift.git
+
+2. Navigate to the project folder:
+   cd zap-shift
+
+3. Install dependencies:
+   npm install
+
+4. Run the app locally:
+   npm run dev
