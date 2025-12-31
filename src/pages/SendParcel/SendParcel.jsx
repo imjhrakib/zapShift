@@ -51,6 +51,7 @@ const SendParcel = () => {
     }
     console.log("cost of parcel", cost);
     data.cost = cost;
+    data.deliveryStatus = "parcel_created";
     Swal.fire({
       title: "Are you agree with the cost?",
       text: `your total cost is ${cost}`,

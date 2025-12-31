@@ -1,9 +1,20 @@
 import React from "react";
-import { FaRegCreditCard, FaRegistered } from "react-icons/fa";
+import {
+  FaMotorcycle,
+  FaRegCreditCard,
+  FaTasks,
+  FaUsers,
+} from "react-icons/fa";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../hooks/useRole";
+
+import { RiEBikeFill } from "react-icons/ri";
+import logoImg from "../assets/logo.png";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
+
   return (
     <div className="drawer lg:drawer-open max-w-7xl mx-auto pt-6">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -48,8 +59,13 @@ const DashboardLayout = () => {
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
+              <Link to={"/"}>
+                <img src={logoImg} alt="" />
+              </Link>
+            </li>
+            <li>
               <Link
-                to={"/"}
+                to={"/dashboard"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Homepage"
               >
@@ -91,6 +107,77 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Payment History</span>
               </NavLink>
             </li>
+
+            {/* role for rider */}
+            {role === "rider" && (
+              <>
+                <li>
+                  <NavLink
+                    to={"/dashboard/assigned-deliveries"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assigned Deliveries"
+                  >
+                    <FaTasks />
+                    <span className="is-drawer-close:hidden">
+                      Assigned Deliveries
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/completed-deliveries"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Completed Deliveries"
+                  >
+                    <FaTasks />
+                    <span className="is-drawer-close:hidden">
+                      Comleted Deliveries
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {/* role for admin  */}
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to={"/dashboard/approve-riders"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Approve Riders"
+                  >
+                    <FaMotorcycle />
+                    <span className="is-drawer-close:hidden">
+                      Approve Riders
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/assigned-riders"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assigned Riders"
+                  >
+                    <RiEBikeFill />
+                    <span className="is-drawer-close:hidden">
+                      Assigned Riders
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/dashboard/users-management"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Management"
+                  >
+                    <FaUsers />
+                    <span className="is-drawer-close:hidden">
+                      Users Management
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
             {/* List item */}
             <li>
               <button
